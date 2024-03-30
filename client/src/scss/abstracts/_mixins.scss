@@ -1,0 +1,11 @@
+// align center
+@mixin center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+// text botton margin clear
+@mixin tmc{
+    margin: 0px;
+}

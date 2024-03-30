@@ -1,1 +1,587 @@
+@use "./abstracts/mixins" as m;
 @import "../../node_modules/bootstrap/scss/bootstrap";
+
+body{
+    box-sizing: content-box;
+}
+#pageContainer{
+    position: relative;
+    min-height: 100vh;
+
+    //to prevernt the content from going under the footer
+    #contentWrap{
+        // height of the footer
+        padding-bottom: 8rem;
+    }
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+.hContainer{
+    background-color: rgb(131, 0, 254);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .25rem 3rem;
+    .b1{
+        display: inline-block;
+        margin: .5rem 0rem;
+        @include m.center;
+        h2{
+            @include m.tmc;
+            color: white;
+            font-weight: bolder; 
+        }
+    }
+    .b2{
+        display: inline-flex;
+        // background-color: cyan;
+        margin: .5rem;
+        .signInUP{
+            margin: .2rem 2rem; 
+            // background-color: green;
+            &>*{
+                border: none;
+                padding: .2rem .8rem;
+                margin: .5rem;
+                border-radius: .5rem;
+            }
+        }
+        .line{
+            height:3rem;
+            width: .06rem;
+            background-color: white;
+            border: none;
+        }
+        .employerSingInUP{
+            margin: .2rem;
+            // background-color: red;
+            @include m.center;
+            a{
+                .p1{
+                    @include m.tmc;
+                    padding-inline: 1rem;
+                    color: white;
+                }
+            }
+        }
+    }
+}
+
+.searchContainer{
+    background-color: rgb(152, 131, 243);    
+    display: flex;
+    justify-content: center;
+    // margin-inline: 3rem;
+    padding-inline: 4rem;
+    &>*{
+        display: inline-block;
+        margin: .5rem;
+    }
+    .b1{
+        // background-color: beige;
+        @include m.center;
+        .p1{
+            @include m.tmc;
+            text-align: center;
+            color: white;
+        }
+    }
+    .b2{
+        .searchbox>*{
+            display: inline-block; 
+        }
+        input{
+            text-align: center;
+            border: none;
+            border-radius: 2rem;
+            margin: .15rem;
+            padding: .2rem .4rem;
+        }
+        .job{
+            padding-inline: 1.5rem;
+        }
+    }
+}
+
+.footerContainer{
+    position: absolute;
+    bottom: 0;
+    background-color: rgb(214, 201, 244);
+    padding: .5rem 0rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-content: flex-start;
+    .hp{
+        font-weight: bold;
+    }
+    p{
+        color: rgb(83, 81, 81);
+        margin-bottom: .5rem;
+    }
+}
+
+.recruiterEntryPage{
+    .quoteContainer{
+        @include m.center;
+        margin-top: 5rem;
+        .b1{
+            .quote{
+                color: rgb(71, 37, 93);
+                text-align: center;
+                font-weight: 400;
+            }
+        }
+    }
+    .rSteps{
+        .b1{
+            @include m.center;
+            margin-top: 5rem;
+            .steps{
+                // background-color: rgb(215, 220, 220);
+                margin: .2rem;
+                height: 13rem;
+                width: 15rem;
+                border: solid indigo .1rem;
+                border-radius: 1rem;
+                padding: .8rem;
+                .heading{
+                    color: rgb(0, 21, 159);
+                }
+                .p1{
+                    color: rgb(26, 73, 77);
+                }
+            }
+        }
+    }
+    .rRegAndSigninCntnr{
+        @include m.center;
+        margin-top: 3rem;
+        .b1{
+            &>*{
+                display: inline-block;
+                margin-inline: 1rem;
+                button{
+                    width: 10rem;
+                    padding: .5rem;
+                    border-radius: .7rem;
+                    border: none; 
+                    background: rgb(88, 103, 212);
+                    color: whitesmoke;
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+}
+
+.signInContainer{
+    margin-top: 4rem;
+    .contentBox{
+        @include m.center;
+        .itemBox{
+            border: solid darkslateblue;
+            padding: 0rem 0rem 1.5rem 1.5rem;
+            border-radius: 1rem;
+            &>*{
+                margin-top: 1rem;
+            }
+            label{
+                width: 6rem;
+            }
+            .headline{
+                h3{
+                    color: darkblue;
+                    text-align: center;
+                }
+            }
+            .authMail{
+                margin-bottom: .5rem;
+            }
+            .btns{
+                @include m.center;
+                button{
+                    border: none;
+                    padding: .3rem;
+                    width: 5rem;
+                    margin-top: 1rem;
+                    margin-inline: 3rem;
+                    border-radius: .5rem;
+                    background-color: white;
+                }
+                .cancel{
+                    border: rgb(255, 191, 0) solid .15rem;
+                }
+                .submit{
+                    border: solid rgb(1, 218, 1) .15rem;
+                }
+            }
+        }
+    }
+}
+
+
+.signUp{
+    @include m.center;
+    margin-top: 3rem;
+    .b1{
+        width: 27rem;
+        .auth{
+            label{
+                width: 5rem;
+                margin-top: .5rem;
+                margin-bottom: 0;
+            }
+            input{
+                width: 100%;
+            }
+        }
+
+    }
+}
+
+.docsCntnr{
+    @include m.center;
+    margin-top: 3rem;
+    .b1{
+        width: 27rem;
+        .docs{
+            input{
+                width: 100%;
+                margin-top: .5rem;
+            }
+        }
+    }
+}
+
+.rReg{
+    .btns{
+        @include m.center;
+        button{
+            border: none;
+            padding: .3rem;
+            width: 5rem;
+            margin: 2rem 8rem;
+            border-radius: .5rem;
+            background-color: white;
+        }
+        .cancel{
+            border: rgb(255, 191, 0) solid .15rem;
+        }
+        .submit{
+            border: solid rgb(1, 218, 1) .15rem;
+        }
+    }
+}
+
+.newPostCntnr{
+    .b1{
+        margin:2rem 0rem;
+        @include m.center;
+        .newPost{
+            h3{
+                text-align: center;
+                @include m.tmc;
+            }
+            textarea,input,select{
+                border: solid darkblue .1rem;
+                width: 35rem;
+            }
+            label{
+                margin-top: 1rem;
+                display: block;
+            }
+            .jtl{
+                margin-top: 0;
+            }
+            select{
+                background-color: white;
+            }
+        }
+    }
+}
+
+.MCstmBtn{
+    @include m.center;
+    button{
+        border: none;
+        padding: .5rem;
+        width: 5rem;
+        border-radius: .5rem;
+        background-color: white;
+        padding: 0px;
+        a{
+            padding: .5rem;
+            // margin:0;        
+        }
+    }
+    .cancel{
+        padding: .3rem;
+        border: rgb(255, 191, 0) solid .15rem;
+    }
+    .submit{
+        padding: .3rem;
+        border: solid rgb(1, 218, 1) ;
+    }
+}
+
+.newPostBtnCntnr{
+    .b1{
+        @include m.center;
+        justify-content: flex-end;
+        padding: .3rem 2rem 0rem 0rem;
+        .newPostBtn{
+            @include m.center;
+            background-color: rgb(54, 202, 0);
+            border: none;
+            border-radius: .5rem;
+            padding: .3rem .5rem;
+            margin-bottom: .5rem;
+            .h5{
+                text-align: center;
+                color: white;
+                @include m.tmc;
+            }
+        }
+    }
+}
+
+.postCntnr{
+    overflow-y: auto;
+    .b1{
+        .post{
+            @include m.center;
+            align-items: flex-start;
+            .postListCntnr{
+                .b1{
+                    width: 27rem;
+                    height: 100vh;
+                    overflow-y: auto;
+                    .postList{
+                        border: solid darkblue .1rem;
+                        border-radius: 1rem;
+                        padding: 1rem;
+                        margin: 0rem 2rem 1rem 0rem;
+                        padding-bottom:0 ;
+                        &>*{
+                            margin-bottom: .3rem;
+                        }
+                        h5{
+                            // font-weight: bold;
+                        }
+                        .pLBtn{
+                            display: flex;
+                            justify-content: flex-end;
+                            &>*{
+                                margin-inline: .5rem;
+                                background-color: white;
+                                border-radius: .5rem;
+                                margin-bottom: 0;
+                                height: 2rem;
+                                width: 5rem;
+                            }
+                            .postDelbtn{
+                                border: solid red .15rem; 
+                            }
+                            .postHideBtn{
+                                border: solid darkgray .15rem;
+                            }
+                            .postEditBtn{
+                                border: solid purple .15rem;
+                            }
+                        }
+                    }
+                }
+            }
+            .postDetailsCntnr{
+                position: sticky;
+                top: 0;
+                .b1{
+                    .postDetails{
+                        overflow-y: auto;
+                        padding: 1rem;
+                        width: 30rem;
+                        height: 100vh;
+                        border: solid black .1rem;
+                        border-radius: 1rem;
+                        .line1{
+                            height: .1rem;
+                            border-top: solid darkblue .1rem;
+                        }
+                        & p {
+                            margin-bottom: 0;
+                        }
+                        &>*{
+                            margin-bottom: 2rem;
+                            &>*{
+                                margin-bottom: .9rem;
+                            }
+                            .businessName,.jTitle{
+                                margin-bottom: 0px;
+                            }
+                        }
+                        .jobDtls p:first-child{
+                            font-weight: bold;
+                            color: rgb(114, 113, 113);
+                        }
+                        .applyAndSave{
+                            button{
+                                border: solid darkblue .2rem;
+                                background-color: white;
+                                border-radius: .5rem;
+                                padding: .3rem;
+                                display: inline-block;
+                                margin: 0;
+                            }
+                            div{
+                                margin: 0;
+                                display: inline-block;
+                                margin-left: 1rem;
+                                border: solid skyblue .2rem;
+                                padding: .25rem;
+                                border-radius: .5rem;
+                                text-align: center;
+                            }
+                        }
+
+
+                    }
+                }
+            }
+        }
+    }
+}
+
+.postCntnr .b1 .post .postListCntnr .b1::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari, and Edge */
+}
+.postDetailsCntnr .b1 .postDetails::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari, and Edge */
+}
+
+.pTitleCntnr{
+    .b1{
+        .pTitle{
+            @include m.center;
+            margin-bottom: 1rem;
+        }
+    }
+}
+
+.userTtlCntnr{
+    .b1{
+        @include m.center;
+        .userTtl{
+            margin-block: 1rem;
+            &>*{
+                text-align: center;
+            }
+
+        }
+    }
+}
+
+.usrPCntnr{
+    @include m.center;
+    .b1{
+        .usrPrfl{
+            // .dpCntnr{
+            //     height: 4rem;
+            //     width: 4rem;
+            //     background-image: url(https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.g_Lc7I7RZldlxvAi9ZND0wHaEK%26pid%3DApi&f=1&ipt=9507d26692576348ce1ee97a5c468e17dbc772fd3079b51e3a11b72f0ea6103f&ipo=images);
+            //     background-size: cover;
+            //     background-position: center;
+            //     border-radius: 50%;
+            // }
+            .usrNmCntnr{
+                margin-right: 2rem;
+                .usrNm{
+                    color: white;
+                    @include m.tmc;
+                    font-weight: 700;
+                }
+            }
+        }
+    }
+}
+
+.uRegCntnr{
+    .b1{
+        .uReg{
+            .uRegDtlsCntnr{
+                @include m.center;
+                margin-top: 2rem;
+                .b1{
+                width: 27rem;
+                    .uRegDtls{
+                        &>*{
+                            &>*{
+                                margin-top: .9rem;
+                            }
+                        }
+                        input,textarea{
+                            width: 100%;
+                        }
+
+                    }
+                }
+            }
+        }
+    }
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type=number] {
+    -moz-appearance: textfield; /* Firefox */
+}
+
+.usrDashbrdCntnr{
+    .b1{
+        @include m.center;
+        .userDashbrd{
+            width: 30rem;
+            margin: .3rem;
+            &>*{
+            margin: .3rem;
+            margin-bottom: 1rem;
+            &>:nth-child(2){
+                min-height: 1.6rem;
+                border-radius: .4rem;
+                padding: .2rem;
+                background-color: rgba(211, 211, 211, 0.628);
+            }
+            .uName{
+                font-weight: bold;
+            }
+            p{
+                margin-bottom: 0rem;
+            }
+            
+            }
+        }
+    }
+}
+
+.uDEBCntnr{
+    .b1{
+        @include m.center;
+        justify-content:flex-end;
+        .uDB{
+            button{
+                margin: 1rem 3rem;
+                width: 5rem;
+                border: solid darkblue .1rem;
+                background-color: white;
+                border-radius: .5rem;
+            }
+        }
+    }
+}
