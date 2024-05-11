@@ -5,7 +5,7 @@ import Post from "./Post";
 import RecruiterPostTitle from "../components/RecruiterPostTitle";
 import { Outlet } from "react-router-dom";
 
-const RecruiteHome = ()=>{
+const RecruiteDashboard = ()=>{
     return(
         <>
             <NewPostButton />
@@ -16,4 +16,4 @@ const RecruiteHome = ()=>{
     )
 }
 
-export default RecruiteHome;
+export default RecruiteDashboard;

@@ -1,27 +1,49 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { updateRecruiterRegData, handleLogo} from "../app/features/postRecruiterRegisterSlice.js";
+import imageToBase64 from "../utils/imageToBase64.js";
 
 const RecruiterDocs = ()=>{
+
+    const dispatch = useDispatch();
+    
+    const handleChange = (event)=>{
+        const { name, value } = event.target;
+        dispatch(updateRecruiterRegData({name, value}));
+    };
+
+    const handleImage = async (event)=>{
+        const image = event.target.files[0];
+        try{
+            const imgString = await imageToBase64(image)
+            dispatch(handleLogo(imgString))
+        }catch(error){
+            console.log(error);
+        }
+    };
+
     return(
         <div className="docsCntnr">
             <div className="b1">
                 <div className="docs">
                     <div className="title">
-                        <h4 className="title2">Documents</h4>
+                        <h4 className="title2">Details</h4>
                     </div>
                     <div className="businessName">
-                        <input type="text" placeholder="Business Name" />
+                        <input type="text" name="businessName" placeholder="Business Name" required onChange={handleChange}/>
                     </div>
                     <div className="industry">
-                        <input type="text" placeholder="Industry" />
+                        <input type="text" name="industry" placeholder="Industry" required onChange={handleChange}/>
                     </div>
                     <div className="address">
-                        <input type="text" placeholder="Address" />
+                        <textarea type="text" name="address" placeholder="Address" rows="3" required onChange={handleChange}/>
                     </div>
                     <div className="website">
-                        <input type="text" placeholder="Website" />
+                        <input type="text" name="website" placeholder="Website" required onChange={handleChange}/>
                     </div>
                     <div className="businessLogo">
-                        <input type="file" name="logo" id="logo" />
+                        <label htmlFor="logo">Company Logo</label>
+                        <input type="file" name="logo" id="logo" accept=".jpg, .jpeg, .png" onChange={handleImage}/>
                     </div>
                 </div>
             </div>

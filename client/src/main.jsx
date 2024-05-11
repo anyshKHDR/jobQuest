@@ -4,20 +4,19 @@ import { createRoot } from "react-dom/client";
 import { createBrowserRouter,RouterProvider } from "react-router-dom";
 import { Provider } from "react-redux";
 
+import AppInitializer from "./components/utils/AppInitializer.jsx";
 import { store } from "./app/store.js";
 import Layout from "./components/Layout.jsx";
 import RecruiterEntryPage from "./views/RecruiterEntryPage.jsx";
 import SignIn from "./components/SignIn.jsx";
 import RecruiterRegister from "./views/RecruiterRegister.jsx";
-import RecruiterHome from "./views/RecruiterHome.jsx";
+import RecruiterdDashboard from "./views/RecruiterHome.jsx";
 import NewPost from "./components/NewPost.jsx";
 import UserHome from "./views/UserHome.jsx";
 import UserSignUp from "./views/UserRegister.jsx";
-import PostDetails from "./components/PostDetails.jsx";
-import Post from "./views/Post.jsx";
-import UserDashboard from "./components/UserDashboard.jsx";
 import UserDashboardView from "./views/UserDashboardView.jsx";
 
+        
 const router = createBrowserRouter([
         {
                 element:<Layout />,
@@ -27,36 +26,31 @@ const router = createBrowserRouter([
                                 element:<RecruiterEntryPage />
                         },
                         {
-                                path:"/recruiterSignIn",
+                                path:"/recruiter/signIn",
                                 element:<SignIn />
                         },
                         {
-                                path:"/recruiterReg",
+                                path:"/recruiter/register",
                                 element: <RecruiterRegister />,
                         },
                         {
-                                path:"/recruiterHome",
-                                element: <RecruiterHome />,
+                                path:"/recruiter/dashboard/:id",
+                                element: <RecruiterdDashboard />,
                         },
                         {
-                                path:"/newPost",
+                                path:"/recruiter/dashboard/:id/newPost",
                                 element: <NewPost />,
                         },
                         {
-                                path:"/userHome",
+                                path:"/",
                                 element:<UserHome />
                         },
                         {
-                                path:"/userRegister",
+                                path:"/user/register",
                                 element:<UserSignUp />
                         },
-                        // {
-                        //         path:"recruiterHome/post/list/postDetails/:postId",
-                        //         element:<PostDetails />
-                        // },
-
                         {
-                                path:"/userDashboard",
+                                path:"/user/dashboard",
                                 element:<UserDashboardView />
                         }
                 ]
@@ -67,7 +61,9 @@ const root = createRoot(document.getElementById("root"));
 root.render(
         <StrictMode>
                 <Provider store={store}>
-                    <RouterProvider router={router} />
+                        <AppInitializer>
+                                <RouterProvider router={router} />
+                        </AppInitializer>
                 </Provider>
         </StrictMode>
 );

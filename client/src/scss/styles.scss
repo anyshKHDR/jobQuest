@@ -232,7 +232,7 @@ a{
         width: 27rem;
         .auth{
             label{
-                width: 5rem;
+                width: 9rem;
                 margin-top: .5rem;
                 margin-bottom: 0;
             }
@@ -250,9 +250,15 @@ a{
     .b1{
         width: 27rem;
         .docs{
-            input{
+            input,textarea{
                 width: 100%;
                 margin-top: .5rem;
+            }
+            .businessLogo{
+                margin-top: .7rem;
+                input{
+                    margin-top: .1rem;
+                }    
             }
         }
     }
@@ -265,15 +271,24 @@ a{
             border: none;
             padding: .3rem;
             width: 5rem;
-            margin: 2rem 8rem;
+            margin-top: 1rem;
+            margin-inline: 3rem;
             border-radius: .5rem;
             background-color: white;
         }
+        a{
+            display: inline-block;
+            @include m.center;
+            height: 1.9rem;
+            width: 5rem;
+        }
         .cancel{
             border: rgb(255, 191, 0) solid .15rem;
+            margin-right: 8.5rem;
         }
         .submit{
             border: solid rgb(1, 218, 1) .15rem;
+            margin-left: 8.5rem;
         }
     }
 }
@@ -387,6 +402,9 @@ a{
                             .postDelbtn{
                                 border: solid red .15rem; 
                             }
+                            .postDelCnclBtn{
+                                border: solid rgb(0, 145, 255) .15rem
+                            }
                             .postHideBtn{
                                 border: solid darkgray .15rem;
                             }
@@ -405,7 +423,7 @@ a{
                         overflow-y: auto;
                         padding: 1rem;
                         width: 30rem;
-                        height: 100vh;
+                        max-height: 100vh;
                         border: solid black .1rem;
                         border-radius: 1rem;
                         .line1{

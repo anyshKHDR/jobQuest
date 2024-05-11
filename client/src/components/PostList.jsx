@@ -1,39 +1,85 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { Link, useFetcher } from 'react-router-dom';
+import { useEffect } from 'react';
+import { postListAsync,deletePostAsync } from '../app/features/postListSlice';
+import { setSelectedPost } from '../app/features/selectedPostSlice';
+import { setDeleteConfirmation } from '../app/features/deleteConfirmationSlice';
 
 const PostList = () => {
 
-    // sample data
-    const postList = [];
-    let num =0;
-    for(num; num<15; num++){
-       const t = `Title ${num}`;
-       const b = `business ${num}`;
-       const l = `location ${num}`;
-       const e = `expire ${num}`;
-       const o = `posted on${num}`;
-       postList.push({t,b,l,e,o});
+  const dispatch = useDispatch();
+
+  const recruiterLoginState = useSelector((state)=>state.login.value);
+  const deleteConfirmation = useSelector((state) => state.deleteConfirmation.value);
+  const postListData = useSelector((state)=>state.postList.value);
+
+  useEffect(()=>{
+    dispatch(postListAsync());
+  },[dispatch])
+
+  useEffect(()=>{
+    if(postListData.length != 0){
+      const data = postListData[0]
+      dispatch(setSelectedPost(data))
+    }else{
+      dispatch(setSelectedPost({}))
     }
-    console.log(postList);
-    
+  },[postListData])
+
+  const handleClick = (id, index)=>{
+    const data = postListData[index]
+    dispatch(setSelectedPost(data));
+  }
+  
+  const handleDelete = (postId, businessId)=>{
+    dispatch(setDeleteConfirmation(postId));
+    dispatch(setSelectedPost(postId))
+  }
+
+  const confirmDelete = (postId, businessId)=>{
+    dispatch(deletePostAsync({postId, businessId}));
+    dispatch(postListAsync())
+  }
+
+  const handleCancel = ()=>{
+    dispatch(setDeleteConfirmation(0))   
+  } 
+
+  const handleColor = (index)=>{
+    console.log(index)
+  }
+
   return (
     <div className="postListCntnr">
         <div className="b1">
-            {postList.map((item)=>(
-              // <Link to={`postDetails/${num}`}>
-              <div className="postList">
-                  <div className="jTitle"><h5>JavaScript Senior Developer</h5></div>
-                  <div className="businessName">{item.b}</div>
-                  <div className="jLoc">{item.l}</div>
-                  <div className="postExpire">{item.e}</div>
-                  <div className="postedOn">{item.o}</div>
-                  <div className="pLBtn">
-                    <button type="button" className='postDelbtn'>Delete</button>
-                    <button type="button" className="postHideBtn">Hide</button>
-                    <button type="button" className="postEditBtn">Edit</button>
-                  </div>
+            {postListData.map((item, index)=>(
+              <div key={index} onClick={()=>handleColor(index)}>
+              <div className="postList"  onClick={()=>handleClick(item._id, index)}>
+                {/* {console.log(item)} */}
+                  <div className="jTitle"><h5>{item.jobTitle}</h5></div>
+                  <div className="businessName"> at {item.businessName}</div>
+                  <div className="jLoc">Job location: {item.location}</div>
+                  <div className="postExpire">Last date: {item.deadline.slice(0,10)}</div>
+                  {/* <div className="postedOn">{}</div> */}
+                  {recruiterLoginState.exist ==1 ? 
+                    <div className="pLBtn">
+                      { deleteConfirmation != item._id  ? 
+                      <button type="button" className='postDelbtn' onClick={()=>handleDelete(item._id, item.businessId)}>Delete</button>
+                      :""}
+                      {deleteConfirmation == item._id ? 
+                      <>
+                        <button type="button" className='postDelbtn' onClick={()=>confirmDelete(item._id, item.businessId)}>Delete</button>
+                        <button type="button" className='postDelCnclBtn' onClick={()=>handleCancel(item._id, item.businessId)}>Cancel</button>
+                      </>
+                      : ""}
+                      {/* <button type="button" className="postHideBtn" onClick={()=>console.log("hide post")}>Hide</button> */}
+                      {/* <button type="button" className="postEditBtn" onClick={()=>console.log("edit post")}>Edit</button> */}
+                    </div>
+                  :""}
               </div>
-              // </Link>
+
+              </div>
             ))}
         </div>
     </div>

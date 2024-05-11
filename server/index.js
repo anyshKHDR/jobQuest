@@ -1,13 +1,13 @@
 import "dotenv/config";
-import exppress from "express";
+import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 
 import recruiterRoutes from "./routes/recruiter.js"
 
-const app = exppress();
+const app = express();
 
-app.use(exppress.json());
+app.use(express.json());
 app.use(cors());
 
 app.use("/recruiter", recruiterRoutes);
