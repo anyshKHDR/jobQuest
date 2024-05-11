@@ -8,6 +8,9 @@ const Header = ()=>{
 
     const loginStatus = useSelector((state)=>state.login.value.exist)
     // console.log(loginStatus)
+
+    const loginData = useSelector((state)=>state.login.value)
+    // console.log(loginData)
     
     const onRecruiter = useSelector((state)=>state.onRecruiter.value);
     const dispatch = useDispatch();
@@ -17,9 +20,15 @@ const Header = ()=>{
 
             <div className="b1">
                 <div className="title">
-                    <Link to={"/"} onClick={()=>dispatch(onRecruiterPage(0))}>
+                    {loginStatus ? 
+                    <Link to={`/recruiter/dashboard/${loginData.businessName}`}>
                         <h2>jobQuest</h2>
                     </Link>
+                    :
+                    <Link to={"/"}>
+                        <h2>jobQuest</h2>
+                    </Link>
+                    }
                 </div>
             </div>
 
