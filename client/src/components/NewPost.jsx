@@ -53,7 +53,8 @@ const NewPost = ()=>{
 
     const theDate = ()=>{
         const date = new Date();
-        const today = date.getDate() +"-" + date.getMonth() +"-" + date.getFullYear();
+        const today = date.getDate() +"-" + (date.getMonth()+1) +"-" + date.getFullYear();
+        console.log(today);
         const splitDate = today.split("-");
         const day = splitDate[0].padStart(2, "0");
         const month = splitDate[1].padStart(2, "0");
