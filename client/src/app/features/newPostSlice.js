@@ -17,7 +17,7 @@ const initialState = {
         deadline : "",
         phone : "",
         email : "",
-        postData:""
+        // postData:""
     }
 }
 
@@ -54,7 +54,7 @@ export const newPostAsync = createAsyncThunk(
     "newPostSlice/newPostAsync",
     async(postData) =>{
         try{
-            console.log(postData);
+            // console.log(postData);
             const response = await axios.post("http://localhost:3001/recruiter/newPost", postData)
             console.log(response);
         }catch(error){

@@ -5,6 +5,12 @@ const PostDetails = () => {
 
   const signInData = useSelector((state) => state.login.value);
   const selectedPost = useSelector((state) => state.selectedPost.value);
+
+  const handleDate = (date)=>{
+    const sliceDate = date.slice(0, 10)
+    const splitDate = sliceDate.split("-");
+    return splitDate[2] +"-"+ splitDate[1]+"-"+splitDate[0]
+  }
   
   if(selectedPost._id){
   return (
@@ -65,11 +71,11 @@ const PostDetails = () => {
             </div>
             <div className="postOn">
               <p className="pot">Posted On</p>
-              <p className="pod">{selectedPost.location} </p>
+              <p className="pod">{selectedPost.postDate} </p>
             </div>
             <div className="exp">
               <p className="dlt">Last date to apply</p>
-              <p className="dld">{selectedPost.deadline} </p>
+              <p className="dld">{selectedPost.deadline && handleDate(selectedPost.deadline)} </p>
             </div>
           </div>
 

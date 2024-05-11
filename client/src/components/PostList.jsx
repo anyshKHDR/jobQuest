@@ -47,9 +47,17 @@ const PostList = () => {
   } 
 
   const handleColor = (index)=>{
-    console.log(index)
+    // console.log(index)
   }
 
+  const handleDate = (date)=>{
+    const sliceDate = date.slice(0, 10)
+    const splitDate = sliceDate.split("-");
+    // console.log(splitDate[2] +"-"+ splitDate[1]+"-"+splitDate[0])
+    return splitDate[2] +"-"+ splitDate[1]+"-"+splitDate[0]
+  }
+
+  if(postListData != 0)
   return (
     <div className="postListCntnr">
         <div className="b1">
@@ -60,7 +68,9 @@ const PostList = () => {
                   <div className="jTitle"><h5>{item.jobTitle}</h5></div>
                   <div className="businessName"> at {item.businessName}</div>
                   <div className="jLoc">Job location: {item.location}</div>
-                  <div className="postExpire">Last date: {item.deadline.slice(0,10)}</div>
+                  <div className="postedOn">Posted on: {item.postDate}</div>
+                  {/* <div className="postExpire">Last date: {item.deadline.slice(0,10)}</div> */}
+                  <div className="postExpire">Last date: {item.deadline && handleDate(item.deadline)}</div>
                   {/* <div className="postedOn">{}</div> */}
                   {recruiterLoginState.exist ==1 ? 
                     <div className="pLBtn">

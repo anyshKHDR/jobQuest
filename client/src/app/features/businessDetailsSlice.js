@@ -29,11 +29,11 @@ const businessDetailSlice = createSlice({
 export const getBusinessDetailAsync = createAsyncThunk(
     "businessDetailSlice/getBusinessDetailAsync",
     async(businessId)=>{
-        // const params = { id:businessId.id}
+        // const params = { id:businessId}
         // console.log(businessId)
         try{
             const response = await axios.get("http://localhost:3001/recruiter/getBusinessDetail", {params:{
-                id: businessId.id
+                id: businessId
             }});
             // console.log(response.data)
             return response.data;

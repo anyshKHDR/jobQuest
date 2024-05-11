@@ -55,8 +55,8 @@ export const getBusinessDetail = async(req, res) =>{
     // console.log(id)
     try{
         const businessDetail = await RecruiterRegister.find({_id:id})
-        // console.log(businessDetail)
-        res.send(businessDetail);
+        // console.log(businessDetail[0])
+        res.send(businessDetail[0]);
     }catch(error){
         console.error(error)
     }

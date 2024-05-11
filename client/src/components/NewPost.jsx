@@ -20,11 +20,18 @@ const NewPost = ()=>{
     // console.log(loginData);
 
     const businessDetail = useSelector((state)=>state.businessDetail.value)
-    const address = businessDetail[0].address;
+    // console.log(businessDetail);
+    const address = businessDetail.address;
     // console.log(address)
     //*****************************************************************
     
     const cancelLink = `/recruiter/dashboard/${loginData.businessName}`
+
+    useEffect(()=>{
+        if(loginData.id)
+        // console.log(loginData.id)
+        dispatch(getBusinessDetailAsync(loginData.id))
+    },[loginData,dispatch])
 
     
     const handleChange = (event)=>{
@@ -36,7 +43,7 @@ const NewPost = ()=>{
         event.preventDefault();
         dispatch(newPostAsync(newPostState));
         dispatch(resetNewPostData());
-        // dispatch(postListAsync())
+        dispatch(postListAsync())
         navigate(`/recruiter/dashboard/${loginData.businessName}`);
     };
 
@@ -44,15 +51,23 @@ const NewPost = ()=>{
         dispatch(postListAsync)
     },[dispatch,handleSubmit])
 
-    const date = new Date();
-    const today = date.getDate() +"-" + date.getMonth() +"-" + date.getFullYear();
-
+    const theDate = ()=>{
+        const date = new Date();
+        const today = date.getDate() +"-" + date.getMonth() +"-" + date.getFullYear();
+        const splitDate = today.split("-");
+        const day = splitDate[0].padStart(2, "0");
+        const month = splitDate[1].padStart(2, "0");
+        const year = splitDate[2]
+        return `${day}-${month}-${year}`
+    }
+    
     useEffect(()=>{
             dispatch(updateNewPostState({name:"businessId", value:loginData.id}))
             dispatch(updateNewPostState({name:"businessName", value:loginData.businessName}))
-            dispatch(updateNewPostState({name:"postDate", value:today}))
-            dispatch(getBusinessDetailAsync(loginData))
-            dispatch(updateNewPostState({name:"businessAddress", value:address}))
+            dispatch(updateNewPostState({name:"postDate", value:theDate()}))
+            if(address != undefined){
+                dispatch(updateNewPostState({name:"businessAddress", value:address}))
+            }
     },[dispatch]) //"newPostState" changed to "dispatch"
 
     return(
@@ -128,6 +143,7 @@ const NewPost = ()=>{
                             bottom={"0rem"}
                             distance={"10rem"}
                             cancelRoute={cancelLink}
+                            submitRoute={cancelLink}
                         />
                     </form>
                 </div>
