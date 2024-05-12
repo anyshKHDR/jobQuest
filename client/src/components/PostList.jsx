@@ -13,6 +13,7 @@ const PostList = () => {
   const recruiterLoginState = useSelector((state)=>state.login.value);
   const deleteConfirmation = useSelector((state) => state.deleteConfirmation.value);
   const postListData = useSelector((state)=>state.postList.value);
+  const selectedPost = useSelector((state)=> state.selectedPost.value);
 
   useEffect(()=>{
     dispatch(postListAsync());
@@ -22,6 +23,7 @@ const PostList = () => {
     if(postListData.length != 0){
       const data = postListData[0]
       dispatch(setSelectedPost(data))
+      console.log(selectedPost);
     }else{
       dispatch(setSelectedPost({}))
     }
@@ -57,13 +59,13 @@ const PostList = () => {
     return splitDate[2] +"-"+ splitDate[1]+"-"+splitDate[0]
   }
 
-  if(postListData != 0)
+  if(postListData != 0 && selectedPost != {})
   return (
     <div className="postListCntnr">
         <div className="b1">
             {postListData.map((item, index)=>(
               <div key={index} onClick={()=>handleColor(index)}>
-              <div className="postList"  onClick={()=>handleClick(item._id, index)}>
+              <div className="postList" style={{border:(item._id == selectedPost._id) ? "solid #9932CC .25rem" :""}}  onClick={()=>handleClick(item._id, index)}>
                 {/* {console.log(item)} */}
                   <div className="jTitle"><h5>{item.jobTitle}</h5></div>
                   <div className="businessName"> at {item.businessName}</div>
