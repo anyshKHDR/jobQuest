@@ -8,13 +8,12 @@ const onRecruiterSlice = createSlice({
     name:"onRecruiter",
     initialState,
     reducers:{
-        onRecruiterPage:(state,actions) =>{
-            state.value = actions.payload;
-            console.log(state.value);
+        onRecruiterPage:(state) =>{
+            state.value = 1;
         },
-        // notOnRercruiterPage:(state) =>{
-        //     state.value = 0;
-        // }
+        notOnRercruiterPage:(state) =>{
+            state.value = 0;
+        }
     },
 });
 

@@ -465,8 +465,6 @@ a{
                                 text-align: center;
                             }
                         }
-
-
                     }
                 }
             }
@@ -507,22 +505,24 @@ a{
     @include m.center;
     .b1{
         .usrPrfl{
-            // .dpCntnr{
-            //     height: 4rem;
-            //     width: 4rem;
-            //     background-image: url(https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.g_Lc7I7RZldlxvAi9ZND0wHaEK%26pid%3DApi&f=1&ipt=9507d26692576348ce1ee97a5c468e17dbc772fd3079b51e3a11b72f0ea6103f&ipo=images);
-            //     background-size: cover;
-            //     background-position: center;
-            //     border-radius: 50%;
-            // }
             .usrNmCntnr{
                 margin-right: 2rem;
                 .usrNm{
                     color: white;
                     @include m.tmc;
                     font-weight: 700;
+                    font-size: x-large;
                 }
             }
+        }
+    }
+}
+
+.logoutCntnr{
+    @include m.center;
+    .b1{
+        .logout{
+            @include m.tmc;
         }
     }
 }

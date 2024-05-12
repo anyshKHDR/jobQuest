@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import ProfileName from "./ProfileName";
 import { useDispatch, useSelector } from "react-redux";
 import { notOnRercruiterPage, onRecruiterPage } from "../app/features/onRecruiterSlice.js";
+import SignOut from "./SignOut.jsx";
 
 const Header = ()=>{
 
@@ -40,7 +41,12 @@ const Header = ()=>{
                     </div>
                 }
 
-                <ProfileName />
+                {loginStatus ?
+                <>
+                    <ProfileName />
+                    <SignOut />
+                </>
+                :""} 
 
                 {!loginStatus && 
                     <>

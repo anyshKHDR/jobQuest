@@ -23,7 +23,7 @@ const PostList = () => {
     if(postListData.length != 0){
       const data = postListData[0]
       dispatch(setSelectedPost(data))
-      console.log(selectedPost);
+      // console.log(selectedPost);
     }else{
       dispatch(setSelectedPost({}))
     }

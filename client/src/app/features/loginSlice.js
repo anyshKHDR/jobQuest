@@ -23,6 +23,7 @@ const loginSlice = createSlice ({
         },
         signInReset:(state) => {
             // state.value.exist = 0;
+            sessionStorage.removeItem("loginStatus");
             state.value = {
                 ...initialState.value
             };
