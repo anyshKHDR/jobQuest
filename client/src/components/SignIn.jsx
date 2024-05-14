@@ -26,21 +26,7 @@ const SignIn = ()=>{
         if(loginData.exist){
             navigate(`/recruiter/dashboard/${loginData.businessName}`)
         }
-
-        //optional retun function - CLEAN UP FUNCTION
-        // return ()=>{
-        //     dispatch(signInReset());
-        // }
     },[loginData.exist])
-
-    // useEffect(()=>{
-    //     const savedLoginStatus = sessionStorage.getItem("loginStatus");
-    //     if(savedLoginStatus){
-    //         const loginStatus = JSON.parse(savedLoginStatus)
-    //         console.log(loginStatus);
-    //         dispatch( setLoginStatus(loginStatus));
-    //     }
-    // },[dispatch])
 
     return(
         <div className="signInContainer">
