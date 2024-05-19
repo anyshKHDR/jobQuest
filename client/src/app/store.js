@@ -11,6 +11,7 @@ import currentPostReducer from "./features/currentPostSlice.js";
 import selectedPostReducer from "./features/selectedPostSlice.js";
 import deletePostReducer from "./features/deletePostSlice.js";
 import deleteConfirmationReducer from "./features/deleteConfirmationSlice.js";
+import jobCategoryReducer from "./features/jobCategorySlice.js";
 
 export const store = configureStore({
     reducer:{
@@ -26,5 +27,6 @@ export const store = configureStore({
         selectedPost: selectedPostReducer,
         deletePost: deletePostReducer,
         deleteConfirmation: deleteConfirmationReducer,
+        jobCategory:jobCategoryReducer,
     }
 });

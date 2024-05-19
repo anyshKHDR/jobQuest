@@ -1,11 +1,14 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ProfileName from "./ProfileName";
 import { useDispatch, useSelector } from "react-redux";
 import { notOnRercruiterPage, onRecruiterPage } from "../app/features/onRecruiterSlice.js";
 import SignOut from "./SignOut.jsx";
 
 const Header = ()=>{
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const loginStatus = useSelector((state)=>state.login.value.exist)
     // console.log(loginStatus)
@@ -14,7 +17,14 @@ const Header = ()=>{
     // console.log(loginData)
     
     const onRecruiter = useSelector((state)=>state.onRecruiter.value);
-    const dispatch = useDispatch();
+    
+    const handleSignUP = ()=>{
+        navigate("/user/register");
+    };
+
+    const handleSignIn = ()=>{
+        console.log("handle click to sign in")
+    }
     
     return(
         <div className="hContainer">
@@ -36,8 +46,8 @@ const Header = ()=>{
             <div className="b2">
                 {!loginStatus && 
                     <div className="signInUP">
-                        <button>Sign In</button>
-                        <button>Sign Up</button>
+                        <button onClick={handleSignIn}>Sign In</button>
+                        <button onClick={handleSignUP}>Sign Up</button>
                     </div>
                 }
 

@@ -15,6 +15,8 @@ import NewPost from "./components/NewPost.jsx";
 import UserHome from "./views/UserHome.jsx";
 import UserSignUp from "./views/UserRegister.jsx";
 import UserDashboardView from "./views/UserDashboardView.jsx";
+import AdminHome from "./views/AdminHome.jsx";
+import ManageJobCategory from "./components/ManageJobCategory.jsx";
 
         
 const router = createBrowserRouter([
@@ -52,6 +54,14 @@ const router = createBrowserRouter([
                         {
                                 path:"/user/dashboard",
                                 element:<UserDashboardView />
+                        },
+                        {
+                                path:"/admin/prime/schrodinger",
+                                element:<AdminHome />
+                        },
+                        {
+                                path:"/admin/prime/schrodinger/manageJobCategory",
+                                element:<ManageJobCategory />
                         }
                 ]
         }

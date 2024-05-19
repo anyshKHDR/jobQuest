@@ -552,11 +552,28 @@ a{
     }
 }
 
+.jobCatSelectCntnr{
+   .b1{
+    .jobCatSelect{
+        div{
+            // border: solid black .4rem;
+            margin: .5rem;
+            display: inline-block;
+            #item{
+                display: inline;
+                width: auto;
+                margin-right: .4rem;
+            }
+        }
+    }
+   } 
+}
+
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
-    margin: 0;
-}
+}  
+
 input[type=number] {
     -moz-appearance: textfield; /* Firefox */
 }
@@ -599,6 +616,111 @@ input[type=number] {
                 border: solid darkblue .1rem;
                 background-color: white;
                 border-radius: .5rem;
+            }
+        }
+    }
+}
+
+.MJCContnr{
+    .b1{
+        @include m.center;
+        .MJC{
+            .title{
+                text-align: center;
+                margin-block: 2rem;
+            }
+
+            .formDiv{
+                width: 30rem;
+                .jobCat,.jobTitle{
+                    input{
+                        width: 100%;
+                        border-radius: .5rem;
+                        border: solid grey .1rem;
+                    }
+                }
+                .jobCat{
+                    margin-bottom: 1rem;
+                    input{
+                        font-size: large;
+                        font-weight: bold;
+                        color: rgb(0, 0, 120);
+                        text-align: center;
+                        border: none;
+                        border-radius: 0;
+                        border-bottom: solid black .1rem;
+                        outline: none;
+                    }
+                    input:focus{
+                        border-bottom: 2px solid #2b00ff;
+                    }
+                }
+
+                .jobTitleDynamicDiv{
+                    margin-bottom: 1rem;
+                    .dynamicDiv{
+                    border: solid grey .1rem;
+                    display: inline-block;
+                    margin: .5rem;
+                    border-radius: 1rem;
+                    padding-left: .5rem;
+                    .dynamic,.dynamicBox,.delItem,.delSymbol{
+                        margin: 0;
+                        display: inline-block;
+                    }
+                    .delItem{
+                        margin-left: .5rem;
+                        border-radius: 1rem;
+                        width: 1.3rem;
+                        border: solid grey .1rem;
+                        background-color: rgb(105, 161, 240);
+                        .delSymbol{
+                            justify-content: right;
+                            @include m.center;
+                        }
+                    }
+                    }
+                }
+
+            }
+            .addBox{
+                margin-inline: .5rem;
+                display: flex;
+                justify-content: right;
+
+                .addJob{
+                    border-radius: 50%;
+                    @include m.center;
+                    background-color: black;
+                    height: 2.5rem;
+                    width: 2.5rem;
+                    margin-top: .5rem;
+                    p{
+                        @include m.tmc;
+                        color: white;
+                        @include m.center;
+                        font-size: 2rem;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.adminHomeCntnr{
+    .b1{
+        .adminHome{
+            .manageCntnr{
+                .manageJobCatCntnr{
+                    margin: 1rem;
+                    button{
+                        border: solid black .1rem;
+                        border-radius: .5rem;
+                        background-color: black;
+                        color: rgb(133, 249, 249);
+                        padding: .3rem .7rem;
+                    }
+                }
             }
         }
     }

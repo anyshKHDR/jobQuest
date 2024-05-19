@@ -18,5 +18,5 @@ const newPostSchema = mongoose.Schema({
     businessAddress:String
 })
 
-const NewPost = mongoose.model("newPost", newPostSchema);
+const NewPost = mongoose.model("NewPost", newPostSchema);
 export default NewPost;
