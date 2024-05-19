@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { removeJob, setCategory, setJobs, setTemp, jobCategoryAsync } from "../app/features/jobCategorySlice";
+import { useNavigate } from "react-router-dom";
 import SubmitAndCancelButtons from "./SubmitAndCancelButtons";
 
 const ManageJobCategory = ()=>{
@@ -10,6 +11,7 @@ const ManageJobCategory = ()=>{
     // console.log(jobCategory.jobsLength);
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     
     const handleCategory = (event)=>{
         // console.log(event.target.value)
@@ -39,11 +41,19 @@ const ManageJobCategory = ()=>{
         if(jobCategory.jobsLength != ""){
             // console.log("submit")
             dispatch(jobCategoryAsync(jobCategory))
+            navigate("/admin/prime/schrodinger")
         }else{
             console.log("empty array")
         }
     };
     
+    const handleKeyPress = (event)=>{
+        if(event.key == "Enter"){
+            handleJob();
+            event.preventDefault();
+        }
+    };
+
     return(
         <div className="MJCContnr">
             <div className="b1">
@@ -78,7 +88,7 @@ const ManageJobCategory = ()=>{
                             :""}
 
                             <div className="jobTitle">
-                                <input type="text" placeholder="Job Title" value={jobCategory.temp} onChange={handleTemp} />
+                                <input type="text" placeholder="Job Title" value={jobCategory.temp} onKeyDown={handleKeyPress} onChange={handleTemp}/>
                             </div>
                         </div>
 
