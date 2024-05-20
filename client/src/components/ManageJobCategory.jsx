@@ -8,13 +8,11 @@ const ManageJobCategory = ()=>{
 
     const jobCategory = useSelector((state)=>state.jobCategory.value);
     // console.log(jobCategory);
-    // console.log(jobCategory.jobsLength);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
     
     const handleCategory = (event)=>{
-        // console.log(event.target.value)
         const category = event.target.value;
         dispatch(setCategory(category))
     };
@@ -23,7 +21,6 @@ const ManageJobCategory = ()=>{
         const jobs = event.target.value;
         console.log(jobs)
         dispatch(setTemp(jobs))
-        // console.log(titles);
     };
     
     const handleJob = ()=>{
@@ -39,11 +36,8 @@ const ManageJobCategory = ()=>{
     const handleSubmit = (event)=>{
         event.preventDefault();
         if(jobCategory.jobsLength != ""){
-            // console.log("submit")
             dispatch(jobCategoryAsync(jobCategory))
             navigate("/admin/prime/schrodinger")
-        }else{
-            console.log("empty array")
         }
     };
     
