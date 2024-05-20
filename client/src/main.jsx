@@ -24,6 +24,12 @@ const router = createBrowserRouter([
                 element:<Layout />,
                 children:[
                         {
+                                path:"/",
+                                element:<UserHome />
+                        },
+
+                        //RECRUITER
+                        {
                                 path:"/recruiter",
                                 element:<RecruiterEntryPage />
                         },
@@ -43,10 +49,7 @@ const router = createBrowserRouter([
                                 path:"/recruiter/dashboard/:id/newPost",
                                 element: <NewPost />,
                         },
-                        {
-                                path:"/",
-                                element:<UserHome />
-                        },
+                        //USER
                         {
                                 path:"/user/register",
                                 element:<UserSignUp />
@@ -55,6 +58,7 @@ const router = createBrowserRouter([
                                 path:"/user/dashboard",
                                 element:<UserDashboardView />
                         },
+                        //ADMIN
                         {
                                 path:"/admin/prime/schrodinger",
                                 element:<AdminHome />
