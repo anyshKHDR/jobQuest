@@ -17,6 +17,7 @@ import UserSignUp from "./views/UserRegister.jsx";
 import UserDashboardView from "./views/UserDashboardView.jsx";
 import AdminHome from "./views/AdminHome.jsx";
 import ManageJobCategory from "./components/ManageJobCategory.jsx";
+import UserSignIn from "./views/UserSignIn.jsx";
 
         
 const router = createBrowserRouter([
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
                         {
                                 path:"/user/register",
                                 element:<UserSignUp />
+                        },
+                        {
+                                path:"/user/signIn",
+                                element:<UserSignIn />
                         },
                         {
                                 path:"/user/dashboard",

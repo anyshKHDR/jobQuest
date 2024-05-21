@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import loginReducer from "./features/loginSlice.js";
 import recruiterLoginReducer from "./features/RecruiterLoginSlice.js";
-import onRecruiterReducer from "./features/onRecruiterSlice.js";
+import userIdentifyReducer from "./features/userIdentifySlice.js";
 import postRecruiterRegisterReducer from "./features/postRecruiterRegisterSlice.js";
 import confirmPasswordReducer from "./features/confirmPasswordSlice.js";
 import newPostReducer from "./features/newPostSlice.js";
@@ -12,12 +12,14 @@ import selectedPostReducer from "./features/selectedPostSlice.js";
 import deletePostReducer from "./features/deletePostSlice.js";
 import deleteConfirmationReducer from "./features/deleteConfirmationSlice.js";
 import jobCategoryReducer from "./features/jobCategorySlice.js";
+import fetchJobCategoryReducer from "./features/fetchJobCategorySlice.js";
+import userRegisterReducer from "./features/userRegisterSlice.js";
 
 export const store = configureStore({
     reducer:{
         login:loginReducer,
         recruiterLoginState: recruiterLoginReducer,
-        onRecruiter:onRecruiterReducer,
+        userIdentify:userIdentifyReducer,
         recruiterRegData: postRecruiterRegisterReducer,
         confirmPassword: confirmPasswordReducer,
         newPost: newPostReducer,
@@ -28,5 +30,7 @@ export const store = configureStore({
         deletePost: deletePostReducer,
         deleteConfirmation: deleteConfirmationReducer,
         jobCategory:jobCategoryReducer,
+        fetchJobCategory: fetchJobCategoryReducer,
+        userRegister: userRegisterReducer,
     }
 });

@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import ProfileName from "./ProfileName";
 import { useDispatch, useSelector } from "react-redux";
-import { notOnRercruiterPage, onRecruiterPage } from "../app/features/onRecruiterSlice.js";
+import { setCurrentUser } from "../app/features/userIdentifySlice.js";
 import SignOut from "./SignOut.jsx";
 
 const Header = ()=>{
@@ -16,7 +16,22 @@ const Header = ()=>{
     const loginData = useSelector((state)=>state.login.value)
     // console.log(loginData)
     
-    const onRecruiter = useSelector((state)=>state.onRecruiter.value);
+    //TO SHOW/HIDE HEADER2 DEPENDS ON THE USERIDENTIFY VALUE
+    const userIdentify = useSelector((state)=>state.userIdentify.value);
+    // console.log(userIdentify);
+
+    const currentURL = window.location.href;
+    
+    const getCurrentUser = (url)=>{
+        const splitURL = url.split("/");
+        const currentUser = splitURL[3];
+        // console.log(currentUser);
+        return currentUser;
+    }
+
+    useEffect(()=>{
+        dispatch(setCurrentUser(getCurrentUser(currentURL)))
+    },[currentURL])
     
     const handleSignUP = ()=>{
         navigate("/user/register");
@@ -63,7 +78,7 @@ const Header = ()=>{
                         <div className="line"></div>
 
                         <div className="employerSingInUP">
-                            <Link to="/recruiter" onClick={()=>dispatch(onRecruiterPage(1))}>
+                            <Link to="/recruiter">
                                 <p className="p1">
                                     Post Jobs
                                 </p>

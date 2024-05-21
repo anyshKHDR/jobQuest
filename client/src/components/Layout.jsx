@@ -7,14 +7,15 @@ import { useSelector } from "react-redux";
 
 const Layout = ()=>{
 
-    const onRecruiter = useSelector((state)=>state.onRecruiter.value);
-    
+    const userIdentify = useSelector((state)=>state.userIdentify.value);
+    // console.log(userIdentify)
+
     return(
         <div id="pageContainer">
             <div id="contentWrap">
                 <div id="tHeader">
                     <Header />
-                    {!onRecruiter?
+                    {userIdentify == "" || userIdentify == "user"?
                     <Header2 />
                     :""}
                 </div>

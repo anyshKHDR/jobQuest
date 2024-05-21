@@ -1,14 +1,27 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateRecruiterRegData } from "../app/features/postRecruiterRegisterSlice.js";
+import { setUserRegisterData } from "../app/features/userRegisterSlice.js";
 
 const SignUp = ()=>{
 
+    const userIdentify = useSelector((state)=>state.userIdentify.value);
+    // console.log(userIdentify);
+    const userRegData = useSelector((state)=>state.userRegister.value)
+    // console.log(userRegData)
+    
     const dispatch = useDispatch();
 
     const handleChange = (event)=>{
         const { name, value } = event.target
-        dispatch(updateRecruiterRegData({name, value}))
+        if(userIdentify == "recruiter"){
+            // console.log("handling recruiter")
+            dispatch(updateRecruiterRegData({name, value}))
+        }
+        if(userIdentify == "user"){
+            // console.log("handling user")
+            dispatch(setUserRegisterData({name, value}))
+        }
     }
 
     return(

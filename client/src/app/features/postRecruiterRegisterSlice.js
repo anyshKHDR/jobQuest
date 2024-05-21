@@ -20,11 +20,11 @@ const postRecruiterRegisterSlice = createSlice({
     initialState,
     reducers:{
         updateRecruiterRegData:(state,action)=>{
+            console.log(action.payload)
             state.value = {
                 ...state.value,
                 [action.payload.name] : action.payload.value
             }
-            // console.log(state.value)
         },
         handleLogo:(state, action) =>{
             state.value = {

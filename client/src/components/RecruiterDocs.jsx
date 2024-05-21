@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { updateRecruiterRegData, handleLogo} from "../app/features/postRecruiterRegisterSlice.js";
-import imageToBase64 from "../utils/imageToBase64.js";
+import fileToBase64 from "../utils/fileToBase64.js";
 
 const RecruiterDocs = ()=>{
 
@@ -15,7 +15,7 @@ const RecruiterDocs = ()=>{
     const handleImage = async (event)=>{
         const image = event.target.files[0];
         try{
-            const imgString = await imageToBase64(image)
+            const imgString = await fileToBase64(image)
             dispatch(handleLogo(imgString))
         }catch(error){
             console.log(error);

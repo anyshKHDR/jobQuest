@@ -2,8 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { signInReset } from "../app/features/loginSlice";
-import { notOnRercruiterPage } from "../app/features/onRecruiterSlice";
-
 
 const SignOut = ()=>{
 
@@ -12,7 +10,6 @@ const SignOut = ()=>{
     const dispatch = useDispatch();
 
     const handleLogout = ()=>{
-        dispatch(notOnRercruiterPage());
         dispatch(signInReset());
         console.log(loginData);
     }

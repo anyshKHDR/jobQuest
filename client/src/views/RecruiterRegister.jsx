@@ -14,7 +14,7 @@ const RecruiterRegister = ()=>{
     const confirmPassword = useSelector((state) => state.confirmPassword.value);
 
     // console.log(recruiterRegData);
-    console.log("password same ? " + confirmPassword);
+    // console.log("password same ? " + confirmPassword);
 
     if(recruiterRegData.password == recruiterRegData.confirmPassword){
         dispatch(same());

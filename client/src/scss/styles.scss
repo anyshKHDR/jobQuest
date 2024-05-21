@@ -537,9 +537,7 @@ a{
                 width: 27rem;
                     .uRegDtls{
                         &>*{
-                            &>*{
-                                margin-top: .9rem;
-                            }
+                            margin-top: .9rem;
                         }
                         input,textarea{
                             width: 100%;
@@ -558,14 +556,18 @@ a{
         div{
             // border: solid black .4rem;
             margin: .5rem;
-            display: inline-block;
+            // display: inline-block;
             #item{
-                display: inline;
+                // display: inline;
                 width: auto;
                 margin-right: .4rem;
             }
         }
     }
+    legend{
+        font-size: large;
+        font-weight: bold;
+    } 
    } 
 }
 
