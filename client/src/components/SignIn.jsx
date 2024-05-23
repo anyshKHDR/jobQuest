@@ -65,7 +65,7 @@ const SignIn = ()=>{
                             <input type="password" name="password" id="password" onChange={handleChange} />
                         </div>
                         <div className="btns">
-                            <Link to="/recruiter">
+                            <Link to={currentUser == "recruiter"? "/recruiter" : "/"}>
                                 <button type="button" className="cancel">Cancel</button> 
                             </Link>
                             <button type="submit" className="submit">Sign In</button>
