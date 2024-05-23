@@ -3,11 +3,11 @@ import { useSelector } from "react-redux";
 
 const Header2 = ()=>{
 
-    const signinStatus = useSelector((state)=> state.login.value.exist);
+    const recruiterSignInStatus = useSelector((state)=> state.login.value.exist);
     
     return(
         <>
-        {!signinStatus &&
+        {!recruiterSignInStatus  &&
             <div className="searchContainer">
                 <div className="b1">
                     <p className="p1">Jobs for you to explore</p>

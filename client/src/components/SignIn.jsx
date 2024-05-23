@@ -2,31 +2,51 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { loginAsync, handleSignInData, signInReset, setLoginStatus } from '../app/features/loginSlice.js';
+import { setUserSignInData, userSignInAsync } from "../app/features/userSignInSlice.js";
 import { useEffect } from "react";
 
 const SignIn = ()=>{
 
-    const loginData = useSelector((state)=>state.login.value)
-    // console.log(loginData.exist)
-    console.log(loginData)
+    const recruiteSignInData = useSelector((state)=>state.login.value);
+    // console.log(recruiteSignInData);
+
+    const userSignInData = useSelector((state)=> state.userSignIn.value);
+    // console.log(userSignInData);
+
+    const currentUser = useSelector((state)=>state.userIdentify.value);
+    // console.log(currentUser);
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const handleChange = (event)=>{
         const {name, value } = event.target;
-        dispatch( handleSignInData({name, value}));
+        if(currentUser == "recruiter"){
+            dispatch( handleSignInData({name, value}));
+        }
+        if(currentUser == "user"){
+            dispatch(setUserSignInData({name, value}));
+        };
     };
     
     const handleSubmit = (event)=>{
         event.preventDefault();
-        dispatch(loginAsync(loginData));
+        if(currentUser == "recruiter"){
+            dispatch(loginAsync(recruiteSignInData));
+        }
+        if(currentUser == "user"){
+            dispatch(userSignInAsync(userSignInData));
+        }
     };
 
     useEffect(()=>{
-        if(loginData.exist){
-            navigate(`/recruiter/dashboard/${loginData.businessName}`)
+        if(recruiteSignInData.exist){
+            navigate(`/recruiter/dashboard/${recruiteSignInData.businessName}`)
         }
-    },[loginData.exist])
+        if(userSignInData.exist){
+            navigate(`/user/${userSignInData.name}/home`)
+        }
+    },[recruiteSignInData.exist, userSignInData.exist])
 
     return(
         <div className="signInContainer">

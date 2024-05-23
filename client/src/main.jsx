@@ -60,6 +60,10 @@ const router = createBrowserRouter([
                                 element:<UserSignIn />
                         },
                         {
+                                path:"/user/:id/home",
+                                element:<UserHome />
+                        },
+                        {
                                 path:"/user/dashboard",
                                 element:<UserDashboardView />
                         },

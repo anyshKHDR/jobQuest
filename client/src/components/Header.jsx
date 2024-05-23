@@ -10,8 +10,8 @@ const Header = ()=>{
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const loginStatus = useSelector((state)=>state.login.value.exist)
-    // console.log(loginStatus)
+    const recruiterLoginStatus = useSelector((state)=>state.login.value.exist)
+    // console.log(recruiterLoginStatus)
 
     const loginData = useSelector((state)=>state.login.value)
     // console.log(loginData)
@@ -19,6 +19,10 @@ const Header = ()=>{
     //TO SHOW/HIDE HEADER2 DEPENDS ON THE USERIDENTIFY VALUE
     const userIdentify = useSelector((state)=>state.userIdentify.value);
     // console.log(userIdentify);
+
+    const userLoginData = useSelector((state) => state.userSignIn.value);
+    const userLoginStatus = userLoginData.exist;
+    console.log(userLoginStatus);
 
     const currentURL = window.location.href;
     
@@ -38,16 +42,21 @@ const Header = ()=>{
     };
 
     const handleSignIn = ()=>{
-        console.log("handle click to sign in")
-    }
+        navigate("/user/signIn");
+        // console.log("handle click to sign in")
+    };
     
     return(
         <div className="hContainer">
 
             <div className="b1">
                 <div className="title">
-                    {loginStatus ? 
+                    {recruiterLoginStatus ? 
                     <Link to={`/recruiter/dashboard/${loginData.businessName}`}>
+                        <h2>jobQuest</h2>
+                    </Link>
+                    :userLoginStatus?
+                    <Link to={`/user/${userLoginData.name}/home`}>
                         <h2>jobQuest</h2>
                     </Link>
                     :
@@ -59,21 +68,28 @@ const Header = ()=>{
             </div>
 
             <div className="b2">
-                {!loginStatus && 
+                {!(recruiterLoginStatus || userLoginStatus) &&
                     <div className="signInUP">
                         <button onClick={handleSignIn}>Sign In</button>
                         <button onClick={handleSignUP}>Sign Up</button>
                     </div>
                 }
 
-                {loginStatus ?
+                {(recruiterLoginStatus || userLoginStatus) ?
                 <>
                     <ProfileName />
                     <SignOut />
                 </>
-                :""} 
+                :""} ;
 
-                {!loginStatus && 
+                {/* {userLoginStatus ? 
+                <>
+                    <ProfileName />
+                    <SignOut />
+                </>
+                :""} */}
+
+                {!(recruiterLoginStatus || userLoginStatus) && 
                     <>
                         <div className="line"></div>
 

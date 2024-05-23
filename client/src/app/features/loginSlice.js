@@ -54,6 +54,7 @@ const loginSlice = createSlice ({
                     exist:1
                 };
                 sessionStorage.setItem("loginStatus", JSON.stringify(state.value));
+                console.log(state.value);
                 console.log("login success");
             }else{
                 state.value.exist = 0;
