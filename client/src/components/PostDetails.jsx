@@ -36,7 +36,7 @@ const PostDetails = () => {
             <>
               <div className="applyAndSave">
                 <button>Apply now</button>
-                <div className="savePost">save</div>
+                {/* <div className="savePost">save</div> */}
               </div>
 
               <div className="line1"></div>
