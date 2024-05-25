@@ -109,7 +109,7 @@ const NewPost = ()=>{
                         </div>
 
                         <div className="jCat">
-                            <label htmlFor="jobCategory" className="jtl">Job title</label>
+                            <label htmlFor="jobCategory" className="jobCat">Job Category</label>
                             <select type="text" name="jobCategory" id="jobCategory" onChange={handleChange} required>
                                 {categories.map((item, index)=>
                                 <option key={index} value={item}>{item}</option>
