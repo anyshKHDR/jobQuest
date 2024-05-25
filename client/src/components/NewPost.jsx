@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { updateNewPostState, newPostAsync, resetNewPostData } from "../app/features/newPostSlice.js";
 import { getBusinessDetailAsync } from "../app/features/businessDetailsSlice.js";
 import { postListAsync } from "../app/features/postListSlice.js";
+import { fetchJobCategoryAsync } from "../app/features/fetchJobCategorySlice.js";
 
 const NewPost = ()=>{
 
@@ -14,15 +15,20 @@ const NewPost = ()=>{
 
     //*****************************************************************
     const newPostState = useSelector((state)=>state.newPost.value);
-    // console.log(newPostState);
+    console.log(newPostState);
 
     const loginData = useSelector((state)=>state.login.value);
-    // console.log(loginData);
+    console.log(loginData);
 
-    const businessDetail = useSelector((state)=>state.businessDetail.value)
+    const businessDetail = useSelector((state)=>state.businessDetail.value);
     // console.log(businessDetail);
     const address = businessDetail.address;
-    // console.log(address)
+    console.log(address)
+
+    const jobCategories = useSelector((state)=> state.fetchJobCategory.value);
+
+    const categories = jobCategories.map((item)=>Object.keys(item)[2])
+    // console.log(categories);
     //*****************************************************************
     
     const cancelLink = `/recruiter/dashboard/${loginData.businessName}`
@@ -33,11 +39,21 @@ const NewPost = ()=>{
         dispatch(getBusinessDetailAsync(loginData.id))
     },[loginData,dispatch])
 
+    useEffect(()=>{
+        dispatch(fetchJobCategoryAsync());
+    },[dispatch])
     
     const handleChange = (event)=>{
         const {name, value} = event.target;
+        console.log(name, value)
         dispatch(updateNewPostState({name, value}));
     }
+
+    // const  selecteChange = (event)=>{
+    //     const data = event.target.value;
+    //     console.log(data)
+
+    // }
 
     const handleSubmit = (event)=>{
         event.preventDefault();
@@ -48,7 +64,7 @@ const NewPost = ()=>{
     };
 
     useEffect(()=>{
-        dispatch(postListAsync)
+        dispatch(postListAsync())
     },[dispatch,handleSubmit])
 
     const theDate = ()=>{
@@ -69,7 +85,14 @@ const NewPost = ()=>{
             if(address != undefined){
                 dispatch(updateNewPostState({name:"businessAddress", value:address}))
             }
-    },[dispatch]) //"newPostState" changed to "dispatch"
+    },[dispatch,address]) //"newPostState" changed to "dispatch"
+
+    useEffect(()=>{
+        if(categories != undefined ){
+            dispatch(updateNewPostState({name:"jobCategory", value:categories[0]}))
+        }
+    },[])
+
 
     return(
         <div className="newPostCntnr">
@@ -84,6 +107,16 @@ const NewPost = ()=>{
                             <label htmlFor="jobTitle" className="jtl">Job title</label>
                             <input type="text" name="jobTitle" id="jobTitle" onChange={handleChange} required/>
                         </div>
+
+                        <div className="jCat">
+                            <label htmlFor="jobCategory" className="jtl">Job title</label>
+                            <select type="text" name="jobCategory" id="jobCategory" onChange={handleChange} required>
+                                {categories.map((item, index)=>
+                                <option key={index} value={item}>{item}</option>
+                                )}
+                            </select>
+                        </div>
+
                         <div className="jDscrptn">
                             <label htmlFor="description">Job description</label>
                             <textarea name="description" id="description" cols="35" rows="4" onChange={handleChange} required/>

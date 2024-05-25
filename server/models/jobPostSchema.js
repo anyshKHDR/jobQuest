@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const newPostSchema = mongoose.Schema({
+const JobPostSchema = mongoose.Schema({
     businessName:String,
     businessId:String,
     jobTitle: String,
@@ -15,8 +15,9 @@ const newPostSchema = mongoose.Schema({
     phone: Number,
     email: String,
     postDate:String,
-    businessAddress:String
+    businessAddress:String,
+    jobCategory:String
 })
 
-const NewPost = mongoose.model("NewPost", newPostSchema);
-export default NewPost;
+const JobPost = mongoose.model("JobPost", JobPostSchema);
+export default JobPost;

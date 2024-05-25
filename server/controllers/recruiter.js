@@ -1,5 +1,5 @@
 import RecruiterRegister from "../models/recruiterRegister.js";
-import NewPost from "../models/newPostSchema.js";
+import JobPost from "../models/jobPostSchema.js";
 
 //register new company
 export const postRecruiterRegister = async (req, res) =>{
@@ -30,7 +30,7 @@ export const getLoginData = async (req,res) => {
 export const newPost = async( req, res) =>{
     const data = req.body;
     // console.log(data);
-    const newPost =  new NewPost(data);
+    const newPost =  new JobPost(data);
     try{
         await newPost.save();
     }catch(error){
@@ -41,7 +41,7 @@ export const newPost = async( req, res) =>{
 
 export const getPostList = async(req, res) => {
     try{
-        const postListData = await NewPost.find() 
+        const postListData = await JobPost.find() 
         res.send(postListData);
         // console.log("**********GET CURRENT POST ********");
         // console.log(postListData)
@@ -66,9 +66,9 @@ export const deletePost =  async (req, res) =>{
     const id = req.params.postId;
     const businessId = req.params.businessId;
     try{
-        const deletePost = await NewPost.deleteOne({_id:id});
+        const deletePost = await JobPost.deleteOne({_id:id});
         if(deletePost.deletedCount > 0){
-            const postListData = await NewPost.find({businessId:businessId})
+            const postListData = await JobPost.find({businessId:businessId})
             // console.log(postListData);
             res.status(200).json(postListData);
         }else{
@@ -82,7 +82,7 @@ export const deletePost =  async (req, res) =>{
 export const getSelectedPost = async (req, res) =>{
     const id = req.params.postId;
     try{
-        const getPost = await NewPost.find({_id:id});
+        const getPost = await JobPost.find({_id:id});
         res.send(getPost);
     }catch(error){
         console.log(error)

@@ -17,6 +17,7 @@ const initialState = {
         deadline : "",
         phone : "",
         email : "",
+        jobCategory:"",
         // postData:""
     }
 }

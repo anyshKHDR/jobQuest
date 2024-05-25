@@ -5,17 +5,22 @@ import { useEffect } from 'react';
 import { postListAsync,deletePostAsync } from '../app/features/postListSlice';
 import { setSelectedPost } from '../app/features/selectedPostSlice';
 import { setDeleteConfirmation } from '../app/features/deleteConfirmationSlice';
+import { userFeedAsync } from '../app/features/userFeedSlice';
 
 const PostList = () => {
 
   const dispatch = useDispatch();
 
   const recruiterLoginState = useSelector((state)=>state.login.value);
+  const userLoginStatus = useSelector((state)=>state.userSignIn.value)
   const deleteConfirmation = useSelector((state) => state.deleteConfirmation.value);
   const postListData = useSelector((state)=>state.postList.value);
   const selectedPost = useSelector((state)=> state.selectedPost.value);
 
   useEffect(()=>{
+    if(userLoginStatus.exist){
+      dispatch(userFeedAsync(userLoginStatus.id))
+    };
     dispatch(postListAsync());
   },[dispatch])
 
