@@ -80,14 +80,7 @@ const Header = ()=>{
                     <ProfileName />
                     <SignOut />
                 </>
-                :""} ;
-
-                {/* {userLoginStatus ? 
-                <>
-                    <ProfileName />
-                    <SignOut />
-                </>
-                :""} */}
+                :""}
 
                 {!(recruiterLoginStatus || userLoginStatus) && 
                     <>
