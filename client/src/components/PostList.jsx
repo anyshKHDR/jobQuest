@@ -14,15 +14,28 @@ const PostList = () => {
   const recruiterLoginState = useSelector((state)=>state.login.value);
   const userLoginStatus = useSelector((state)=>state.userSignIn.value)
   const deleteConfirmation = useSelector((state) => state.deleteConfirmation.value);
-  const postListData = useSelector((state)=>state.postList.value);
   const selectedPost = useSelector((state)=> state.selectedPost.value);
+  const entryFeed = useSelector((state)=>state.postList.value);
+  const userFeed = useSelector((state) => state.userFeed.value);
+
+  // var postListData = dataX;
+  var postListData = [];
+
+  if( userLoginStatus.exist){
+    postListData = userFeed;
+  }else{
+    postListData = entryFeed;
+  };
+
+  useEffect(()=>{
+    dispatch(postListAsync());
+  },[dispatch])
 
   useEffect(()=>{
     if(userLoginStatus.exist){
       dispatch(userFeedAsync(userLoginStatus.id))
     };
-    dispatch(postListAsync());
-  },[dispatch])
+  },[userLoginStatus.exist])
 
   useEffect(()=>{
     if(postListData.length != 0){
@@ -65,6 +78,7 @@ const PostList = () => {
   }
 
   if(postListData != 0 && selectedPost != {})
+  // if(postListData != 0 && selectedPost != {})
   return (
     <div className="postListCntnr">
         <div className="b1">

@@ -15,6 +15,7 @@ import jobCategoryReducer from "./features/jobCategorySlice.js";
 import fetchJobCategoryReducer from "./features/fetchJobCategorySlice.js";
 import userRegisterReducer from "./features/userRegisterSlice.js";
 import userSignInReducer from "./features/userSignInSlice.js";
+import userFeedReducer from "./features/userFeedSlice.js";
 
 export const store = configureStore({
     reducer:{
@@ -34,5 +35,6 @@ export const store = configureStore({
         fetchJobCategory: fetchJobCategoryReducer,
         userRegister: userRegisterReducer,
         userSignIn: userSignInReducer,
+        userFeed: userFeedReducer,
     }
 });
