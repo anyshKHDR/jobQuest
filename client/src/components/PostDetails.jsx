@@ -1,15 +1,34 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import ConfirmApply from "./ConfirmApply";
+import { setConfirmApply } from "../app/features/confirmJobApplySlice";
 
 const PostDetails = () => {
 
   const signInData = useSelector((state) => state.login.value);
   const selectedPost = useSelector((state) => state.selectedPost.value);
+  const userIdentify = useSelector((state)=> state.userIdentify.value);
+  const userSignIn = useSelector((state)=> state.userSignIn.value);
+  const confirmApply = useSelector((state)=>state.confirmJobApply.value);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleDate = (date)=>{
     const sliceDate = date.slice(0, 10)
     const splitDate = sliceDate.split("-");
     return splitDate[2] +"-"+ splitDate[1]+"-"+splitDate[0]
+  }
+
+  const handleApply = (event)=>{
+    event.preventDefault();
+    if(!userSignIn.exist){
+      navigate("/user/signIn")
+    }else{
+      // console.log(selectedPost._id)
+      dispatch(setConfirmApply());
+    }
   }
   
   if(selectedPost._id){
@@ -35,8 +54,12 @@ const PostDetails = () => {
           {!signInData.exist && (
             <>
               <div className="applyAndSave">
-                <button>Apply now</button>
-                {/* <div className="savePost">save</div> */}
+                { !confirmApply ?
+                <button onClick={handleApply}>Apply now</button>
+                // <div className="savePost">save</div>
+                :
+                <ConfirmApply />
+                }
               </div>
 
               <div className="line1"></div>

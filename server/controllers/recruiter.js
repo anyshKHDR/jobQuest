@@ -1,5 +1,7 @@
 import RecruiterRegister from "../models/recruiterRegister.js";
 import JobPost from "../models/jobPostSchema.js";
+import RecruiterJobApplication from "../models/recruiteJobApplicationSchema.js";
+import { application } from "express";
 
 //register new company
 export const postRecruiterRegister = async (req, res) =>{
@@ -7,7 +9,9 @@ export const postRecruiterRegister = async (req, res) =>{
     // console.log(data);
     const newRecruiter = new RecruiterRegister(data);
     try{
-        await newRecruiter.save();
+        const recruiter = await newRecruiter.save();
+        const jobApplicationList = new RecruiterJobApplication({businessId:recruiter._id, applications:[]});
+        await jobApplicationList.save();
     }catch(error){
         console.error(error);
     }

@@ -18,6 +18,7 @@ import UserDashboardView from "./views/UserDashboardView.jsx";
 import AdminHome from "./views/AdminHome.jsx";
 import ManageJobCategory from "./components/ManageJobCategory.jsx";
 import UserSignIn from "./views/UserSignIn.jsx";
+import ConfirmApply from "./components/ConfirmApply.jsx";
 
         
 const router = createBrowserRouter([
@@ -75,6 +76,11 @@ const router = createBrowserRouter([
                         {
                                 path:"/admin/prime/schrodinger/manageJobCategory",
                                 element:<ManageJobCategory />
+                        },
+                        //TEST COMPONENTS
+                        {
+                                path:"/test/confirmApply",
+                                element:<ConfirmApply />
                         }
                 ]
         }

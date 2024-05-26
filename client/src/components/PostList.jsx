@@ -6,6 +6,7 @@ import { postListAsync,deletePostAsync } from '../app/features/postListSlice';
 import { setSelectedPost } from '../app/features/selectedPostSlice';
 import { setDeleteConfirmation } from '../app/features/deleteConfirmationSlice';
 import { userFeedAsync } from '../app/features/userFeedSlice';
+import { resetConfirmApply } from '../app/features/confirmJobApplySlice';
 
 const PostList = () => {
 
@@ -50,6 +51,7 @@ const PostList = () => {
   const handleClick = (id, index)=>{
     const data = postListData[index]
     dispatch(setSelectedPost(data));
+    dispatch(resetConfirmApply());
   }
   
   const handleDelete = (postId, businessId)=>{
