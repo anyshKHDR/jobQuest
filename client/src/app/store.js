@@ -18,6 +18,8 @@ import userSignInReducer from "./features/userSignInSlice.js";
 import userFeedReducer from "./features/userFeedSlice.js";
 import jobApplyReducer from "./features/jobApplySlice.js";
 import confirmJobApplyReducer from "./features/confirmJobApplySlice.js";
+import getRecruiterApplicationRecucer from "./features/getRecruiterApplicationSlice.js";
+
 
 export const store = configureStore({
     reducer:{
@@ -40,6 +42,7 @@ export const store = configureStore({
         userFeed: userFeedReducer,
         jobApply: jobApplyReducer,
         confirmJobApply:confirmJobApplyReducer,
+        getRecruiterApplications: getRecruiterApplicationRecucer,
 
     }
 });

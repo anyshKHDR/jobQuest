@@ -19,6 +19,10 @@ import AdminHome from "./views/AdminHome.jsx";
 import ManageJobCategory from "./components/ManageJobCategory.jsx";
 import UserSignIn from "./views/UserSignIn.jsx";
 import ConfirmApply from "./components/ConfirmApply.jsx";
+import UserApplicationViewListButton from "./components/userApplicationViewButton.jsx";
+import UserApplicationList from "./components/UserApplicationList.jsx";
+import RecruiterApplicationViewButton from "./components/RecruiterApplicationViewButton.jsx";
+import RecruiterApplicationList from "./components/RecruiterApplicationList.jsx";
 
         
 const router = createBrowserRouter([
@@ -51,6 +55,10 @@ const router = createBrowserRouter([
                                 path:"/recruiter/dashboard/:id/newPost",
                                 element: <NewPost />,
                         },
+                        {
+                                path:"/recruiter/:id/jobApplications",
+                                element: <RecruiterApplicationList />
+                        },
                         //USER
                         {
                                 path:"/user/register",
@@ -68,6 +76,11 @@ const router = createBrowserRouter([
                                 path:"/user/dashboard",
                                 element:<UserDashboardView />
                         },
+                        {
+                                // path:"/user/:id/viewApplications",
+                                path:"/user/viewApplications",
+                                element:<UserApplicationList />
+                        },
                         //ADMIN
                         {
                                 path:"/admin/prime/schrodinger",
@@ -81,7 +94,23 @@ const router = createBrowserRouter([
                         {
                                 path:"/test/confirmApply",
                                 element:<ConfirmApply />
-                        }
+                        },
+                        {
+                                path:"/test/userapplicationbutton",
+                                element:<UserApplicationViewListButton />
+                        },
+                        {
+                                path:"/test/userapplication",
+                                element:<UserApplicationList />
+                        },
+                        {
+                                path:"/test/ravb",
+                                element:<RecruiterApplicationViewButton />
+                        },
+                        {
+                                path:"/test/ral",
+                                element:<RecruiterApplicationList />
+                        },
                 ]
         }
 ]);

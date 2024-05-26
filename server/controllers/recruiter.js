@@ -2,6 +2,7 @@ import RecruiterRegister from "../models/recruiterRegister.js";
 import JobPost from "../models/jobPostSchema.js";
 import RecruiterJobApplication from "../models/recruiteJobApplicationSchema.js";
 import { application } from "express";
+import UserRegister from "../models/userRegisterSchema.js";
 
 //register new company
 export const postRecruiterRegister = async (req, res) =>{
@@ -92,3 +93,39 @@ export const getSelectedPost = async (req, res) =>{
         console.log(error)
     }
 };
+
+export const getApplications = async (req, res) => {
+    const businessId = "66238f518f321fd7208840a2";
+    try{
+        const applicationObj = await RecruiterJobApplication.findOne({businessId:businessId},{applications:1})
+        const applications = applicationObj.applications;
+        // console.log(applications);
+
+        const detailedApplications = await Promise.all(applications.map(async (application) => {
+            const jobPost = await JobPost.findById(application.postId, { jobTitle: 1 }).lean();
+            const user = await UserRegister.findById(application.userId, {
+                fName: 1, phone: 1, linkedIn: 1, github: 1, currentLocation: 1, qualification: 1, skills: 1, workExperience: 1
+            }).lean();
+
+            return {
+                postName: jobPost.jobTitle,
+                userDetails: {
+                    fName: user.fName,
+                    phone: user.phone,
+                    linkedIn: user.linkedIn,
+                    github: user.github,
+                    currentLocation: user.currentLocation,
+                    qualification: user.qualification,
+                    skills: user.skills,
+                    workExperience: user.workExperience
+                }
+            };
+        }));
+
+        console.log(detailedApplications);
+        res.send(detailedApplications);
+
+    }catch(error){
+        console.log(error);
+    };
+}
