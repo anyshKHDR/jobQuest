@@ -53,7 +53,7 @@ const userSignInSlice = createSlice({
                 name:data.fName,
                 exist:1
             }
-            sessionStorage.setItem("loginStatus", JSON.stringify(state.value));
+            // sessionStorage.setItem("loginStatus", JSON.stringify(state.value));
             console.log("user signIn success");
         })
         .addCase(userSignInAsync.rejected, ()=>{

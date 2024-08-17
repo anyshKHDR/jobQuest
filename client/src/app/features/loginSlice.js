@@ -23,7 +23,7 @@ const loginSlice = createSlice ({
         },
         signInReset:(state) => {
             // state.value.exist = 0;
-            sessionStorage.removeItem("loginStatus");
+            // sessionStorage.removeItem("loginStatus");
             state.value = {
                 ...initialState.value
             };
@@ -53,7 +53,7 @@ const loginSlice = createSlice ({
                     id,
                     exist:1
                 };
-                sessionStorage.setItem("loginStatus", JSON.stringify(state.value));
+                // sessionStorage.setItem("loginStatus", JSON.stringify(state.value));
                 console.log(state.value);
                 console.log("login success");
             }else{

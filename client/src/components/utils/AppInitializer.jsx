@@ -5,24 +5,24 @@ import { setUserLoginStatus } from "../../app/features/userSignInSlice";
 
 const AppInitializer = ({children})=>{
 
-    const dispatch = useDispatch();
-    const currentUser = useSelector((state)=>state.userIdentify.value);
+    // const dispatch = useDispatch();
+    // const currentUser = useSelector((state)=>state.userIdentify.value);
     // console.log(currentUser)
-    const userStatus = useSelector((state) => state.userSignIn.value);
+    // const userStatus = useSelector((state) => state.userSignIn.value);
 
-    useEffect(()=>{
+    // useEffect(()=>{
 
-        const savedLoginStatus = sessionStorage.getItem("loginStatus");
+    //     const savedLoginStatus = sessionStorage.getItem("loginStatus");
 
-        if( currentUser =="recruiter" && savedLoginStatus){
-            const loginStatus = JSON.parse(savedLoginStatus);
-            dispatch(setLoginStatus(loginStatus));
-        }
-        if( currentUser == "user" && savedLoginStatus){
-            const loginStatus = JSON.parse(savedLoginStatus);
-            dispatch(setUserLoginStatus(loginStatus));
-        }
-    },[dispatch]);
+    //     if( currentUser =="recruiter" && savedLoginStatus){
+    //         const loginStatus = JSON.parse(savedLoginStatus);
+    //         dispatch(setLoginStatus(loginStatus));
+    //     }
+    //     if( currentUser == "user" && savedLoginStatus){
+    //         const loginStatus = JSON.parse(savedLoginStatus);
+    //         dispatch(setUserLoginStatus(loginStatus));
+    //     }
+    // },[dispatch]);
 
     return <>{children}</>
 }
